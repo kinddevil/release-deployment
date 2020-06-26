@@ -1,0 +1,19 @@
+version: '3'
+services:
+  backend-service:
+    build: .
+    image: "campus-backend-service:latest"
+    container_name: service
+    networks:
+      - service-network
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    command: ["java",
+              "-jar",
+              "-Dspring.profiles.active=staging",
+              "/app/app.jar"]
+
+networks:
+  service-network:
